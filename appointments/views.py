@@ -19,11 +19,9 @@ def doctor_detail(request, doctor_id):
         return Response({'error': 'Doctor not found'},status=400)
     serializer = DoctorSerializer(doctor)
     return Response(serializer.data)
-@api_view(['GET'])
+@api_view(['POST'])
 def book_appointment(request):
-    # appointments = Appointment.objects.all()
-    # serializer = AppointmentSerializer(appointments, many=True)
-    # return Response(serializer.data)
+   
     serializer = AppointmentSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
